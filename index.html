@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade - Javascript</title>
+</head>
+<body>
+    <div style="margin-bottom: 30px;">
+        <h1>1 - Média aritmética</h1>
+        <p>(use '.', não ',')</p>
+        <input type="text" name="nota_1" id="nota_1" placeholder="Nota 1"><br>
+        <input type="text" name="nota_2" id="nota_2" placeholder="Nota 2"><br>
+        <input type="text" name="nota_3" id="nota_3" placeholder="Nota 3"><br>
+        <button id="calcular_media">Calcular</button> - <label id="media_final">0.0</label>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+        <h1>2 - Classificar nadador</h1>
+        <input type="text" id="idade_nadador"><br>
+        <label id="resultado_nadador">Categoria -> </label><br>
+        <button id="classificar_nadador">Classificar</button>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+        <h1>3 - Tabuada</h1>
+        <p>Informe um numero</p><br>
+        <input type="text" id="tabuada_numero">
+        <button id="criar-tabuada">Criar</button>
+        <div id="tabela"></div>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+        <h1>4 - Podio de nadadores</h1>
+        <label> Nadador 1 - <input type="text" id="nom_1" placeholder="Nome"> -> <input type="text" id="min_1" placeholder="Minutos">:<input type="text" id="seg_1" placeholder="segundos"></label><br>
+        <label> Nadador 2 - <input type="text" id="nom_2" placeholder="Nome"> -> <input type="text" id="min_2" placeholder="Minutos">:<input type="text" id="seg_2" placeholder="segundos"></label><br>
+        <label> Nadador 3 - <input type="text" id="nom_3" placeholder="Nome"> -> <input type="text" id="min_3" placeholder="Minutos">:<input type="text" id="seg_3" placeholder="segundos"></label><br>
+        <button id="check_podio">Checar</button><br><br>
+        <label>Ouro = <a id="ouro"></a></label><br>
+        <label>Prata = <a id="prata"></a></label><br>
+        <label>Bronze = <a id="bronze"></a></label><br>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+        <h1>5 - Metros quadrados</h1>
+        <label>Digite as informações da janela:</label><br>
+        <input type="text" id="largura" placeholder="Largura"><br>
+        <input type="text" id="altura" placeholder="Altura"><br>
+        <label>Resultado - <a id="metros_quadrados"></a></label><br><br>
+        <button id="check-metros">Calcular</button>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+        <h1>6 - Juros</h1>
+        <label>Digite as informações da parcela:</label><br>
+        <input type="text" id="valor_parcela" placeholder="Valor"><br>
+        <input type="text" id="dias_parcela" placeholder="Dias atrasados"><br>
+        <label>Valor total - <a id="resultado_juros"></a></label><br><br>
+        <button id="check-juros">Calcular</button>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+        <h1>7 - Tipo de numero</h1>
+        <label>Digite um numero inteiro:</label><br>
+        <input type="text" id="numero_inteiro" placeholder="Numero"><br>
+        <label>Tipo - <a id="tipo_numero"></a></label><br><br>
+        <button id="check-numero">Checar</button>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+        <h1>8 - Maior</h1>
+        <input type="text" id="numero_1" placeholder="Numero"><br>
+        <input type="text" id="numero_2" placeholder="Numero"><br>
+        <label>Maior - <a id="numero_maior"></a></label><br>
+        <label>Menor - <a id="numero_menor"></a></label><br>
+        <button id="check-maior">Checar</button>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+        <h1>9 - Somas</h1>
+        <label>Digite os numeros do conjunto 1 e 2</label><br>
+        <input type="text" id="conj_1" placeholder="Conjunto 1"><br>
+        <input type="text" id="conj_2" placeholder="Conjunto 1"><br>
+        <input type="text" id="conj_3" placeholder="Conjunto 2"><br>
+        <input type="text" id="conj_4" placeholder="Conjunto 2"><br>
+        <label>Conjunto maior - <a id="resul-conjun"></a></label><br>
+        <button id="check-somas">Checar</button>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+        <h1>10 - Idade</h1>
+        <label>Digite a idade conforme abaixo</label><br>
+        <input type="text" id="anos" placeholder="Anos"><br>
+        <input type="text" id="meses" placeholder="Meses"><br>
+        <input type="text" id="dias" placeholder="Dias 2"><br>
+        <label>Idade - <a id="resul-idade"></a></label><br>
+        <button id="check-idade">Checar</button>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+        <h1>11 - Imagens</h1>
+        <div id="imagens"></div>
+    </div>
+</body>
+<script>
+    document.getElementById('calcular_media').addEventListener("click", function(){
+       nota1 = parseFloat(document.getElementById('nota_1').value)
+       nota2 = parseFloat(document.getElementById('nota_2').value)
+       nota3 = parseFloat(document.getElementById('nota_3').value)
+       media = (nota1 + nota2 + nota3) / 3
+       if(media >= 6){
+           mensagem = " (APROVADO)"
+       } else {
+           mensagem = " (REPROVADO)" 
+       }
+       document.getElementById("media_final").textContent = media.toFixed(2) + mensagem
+    });
+
+    document.getElementById('classificar_nadador').addEventListener("click", function(){
+        let cat = ""
+        idade = parseInt(document.getElementById('idade_nadador').value)
+        
+        if(idade >= 5 && idade <= 7){
+            cat = "Infantil"
+        }
+
+        else if(idade >= 8 && idade <= 13){
+            cat = "Juvenil"
+        }
+
+        else if(idade >= 14 && idade <= 17){
+            cat = "Adolescente"
+        }
+
+        else if(idade >= 18){
+            cat = "Adulto"
+        }
+
+        document.getElementById('resultado_nadador').textContent = "Categoria -> " + cat
+    });
+
+    document.getElementById('check_podio').addEventListener("click", function(){
+        nad_1 = (parseInt(document.getElementById('min_1').value) * 60) + parseInt(document.getElementById('seg_1').value)
+        nad_2 = (parseInt(document.getElementById('min_2').value) * 60) + parseInt(document.getElementById('seg_2').value)
+        nad_3 = (parseInt(document.getElementById('min_3').value) * 60) + parseInt(document.getElementById('seg_3').value)
+        let objeto = [
+            {
+                nome:document.getElementById('nom_1').value,
+                tempo:nad_1
+            },
+            {
+                nome:document.getElementById('nom_2').value,
+                tempo:nad_2
+            },
+            {
+                nome:document.getElementById('nom_3').value,
+                tempo:nad_3
+            }
+        ]
+
+        objeto.sort((a, b) => (a.tempo > b.tempo) ? 1 : -1)
+        document.getElementById('ouro').textContent = objeto[0].nome
+        document.getElementById('prata').textContent = objeto[1].nome
+        document.getElementById('bronze').textContent = objeto[2].nome
+    });
+
+    document.getElementById('check-metros').addEventListener("click", function(){
+        largura = parseFloat(document.getElementById('largura').value)
+        altura = parseFloat(document.getElementById('altura').value)
+        document.getElementById('metros_quadrados').innerHTML = largura * altura
+    })
+
+    document.getElementById('check-juros').addEventListener("click", function(){
+        valor_parcela = parseFloat(document.getElementById('valor_parcela').value)
+        dias_parcela = parseInt(document.getElementById('dias_parcela').value)
+
+        for(let i = 0; i < dias_parcela; i++){
+            valor_parcela += (valor_parcela * 0.02)
+        }
+
+        document.getElementById('resultado_juros').innerHTML = "R$"+valor_parcela.toFixed(2)
+    })
+
+    document.getElementById('check-numero').addEventListener("click", function(){
+        numero = parseFloat(document.getElementById('numero_inteiro').value)
+        if(numero > 0){
+            tipo = "POSITIVO"
+        } 
+
+        else if(numero < 0){
+            tipo = "NEGATIVO"
+        }
+
+        else{
+            tipo = "NEUTRO"
+        }
+
+        document.getElementById('tipo_numero').innerHTML = tipo
+    })
+
+    document.getElementById('check-maior').addEventListener("click", function(){
+        numero_1 = parseInt(document.getElementById('numero_1').value)
+        numero_2 = parseInt(document.getElementById('numero_2').value)
+
+        if(numero_1 > numero_2){
+            document.getElementById('numero_maior').innerHTML = numero_1
+            document.getElementById('numero_menor').innerHTML = numero_2
+        } 
+
+        else if(numero_1 < numero_2){
+            document.getElementById('numero_maior').innerHTML = numero_2
+            document.getElementById('numero_menor').innerHTML = numero_1
+        }
+
+        else{
+            document.getElementById('numero_maior').innerHTML = "IGUAIS"
+            document.getElementById('numero_menor').innerHTML = "IGUAIS"
+        }
+    })
+
+    document.getElementById('check-somas').addEventListener("click", function(){
+        valor1 = parseFloat(document.getElementById("conj_1").value)
+        valor2 = parseFloat(document.getElementById("conj_2").value)
+        valor3 = parseFloat(document.getElementById("conj_3").value)
+        valor4 = parseFloat(document.getElementById("conj_4").value)
+
+        if( (valor1 + valor2) > (valor3 + valor4) ){
+            document.getElementById("resul-conjun").innerHTML = "COJUNTO 1"
+        }
+
+        else if((valor1 + valor2) < (valor3 + valor4)){
+            document.getElementById("resul-conjun").innerHTML = "COJUNTO 2"
+        } 
+
+        else {
+            document.getElementById("resul-conjun").innerHTML = "NEUTRO"
+        }
+    })
+
+    document.getElementById('check-idade').addEventListener("click", function(){
+       anos = parseInt(document.getElementById('anos').value)
+       meses = parseInt(document.getElementById('meses').value)
+       dias = parseInt(document.getElementById('dias').value)
+
+       dias_totais = (anos * 365) + (meses * 30) + dias
+       document.getElementById('resul-idade').innerHTML = dias_totais
+    })
+
+    document.getElementById('criar-tabuada').addEventListener("click", function(){
+        document.getElementById('tabela').innerHTML = ""
+        let numero = parseInt(document.getElementById('tabuada_numero').value)
+        for (let i = 1; i <= 10; i++){
+            var newlabel = document.createElement("Label");
+            var br = document.createElement("Br");
+            newlabel.innerHTML = i + " x "+ numero +" = " + (i * numero);
+            document.getElementById('tabela').appendChild(newlabel)
+            document.getElementById('tabela').appendChild(br)
+        }
+    })
+
+    window.onload = function(){
+        imagens = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg']
+        for (let i = 0; i < 10; i++){
+            var newImg = document.createElement("img");
+            newImg.src = "./src/img/"+imagens[i]
+            newImg.height = '200'
+            document.getElementById('imagens').appendChild(newImg)
+        }
+    }
+
+</script>
+</html>
